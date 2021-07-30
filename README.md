@@ -1,2 +1,5 @@
-# favoriteblogs-fe
-An application to save and share your favorite blogs
+## usage
+
+Run frontend in development mode with _npm start_
+
+Start server to port 3005 with _npm run server_ for Persons part backend
