@@ -8,8 +8,7 @@ import { setToken, setUser } from 'Reducers/loginReducer'
 
 import { Container } from 'semantic-ui-react'
 import LoginNav from "Presentationals/LoginNav"
-
-import bannerImg from './assets/images/banner.jpg'
+import HomePage from "Containers/HomePage"
 
 const { default: LoggedInContent } = await import(/* webpackPreload: true */'Containers/LoggedInContent')
 const { default: Notification } = await import(/* webpackPreload: true */'Presentationals/Notification')
@@ -44,13 +43,7 @@ const App = (props) => {
           <Route exact path='/' render={() =>
 					<>
             <main>
-							<h2>An application to save and share your favorite blogs.</h2>
-							<p>By <b>Giacomo Mariani</b>.</p>
-							<p>
-								<a href="https://fi.linkedin.com/in/giacomo-mariani">Linkedin</a>,&nbsp;
-								<a href="https://www.medium.com/@giacomo-mariani">Medium</a>
-							</p>
-							<img className="banner" src={bannerImg} alt="Banner image" width="1215" height="810"/>
+							<HomePage />
 						</main>
 						<footer>
 							<a href="https://www.freepik.com/vectors/business" className="credits">

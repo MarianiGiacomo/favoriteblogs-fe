@@ -12,7 +12,7 @@ import loginService from 'Services/login'
 import { useField } from 'Hooks'
 import { getFieldsValues } from 'Lib'
 
-function LoginPage(props) {
+const LoginPage = (props) => {
   const username = useField('text', 'username')
   const password = useField('password', 'password')
   const { setToken, setUser, setNotification } = props

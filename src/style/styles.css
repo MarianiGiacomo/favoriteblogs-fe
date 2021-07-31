@@ -27,9 +27,9 @@ img {
 }
 
 .card {
+	max-width: fit-content;
 	margin: 5% auto;
 	text-align: center;
-	width: max-content;
 	padding: 5%;
 	background-color: #fefefe;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

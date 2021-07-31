@@ -34,6 +34,7 @@ const config = (env, argv) => {
 				Hooks: path.resolve(__dirname, 'src/hooks'),
 				Lib: path.resolve(__dirname, 'src/lib'),
 				Services: path.resolve(__dirname, 'src/services'),
+				Assets: path.resolve(__dirname, 'src/assets') 
 			}
 		},
     // webpack 5 comes with devServer which loads in development mode
@@ -57,6 +58,9 @@ const config = (env, argv) => {
           test: /\.(jsx|js)$/,
           include: path.resolve(__dirname, 'src'),
           exclude: /node_modules/,
+					resolve: {
+						extensions: [".js", ".jsx"]
+					},
           use: [{
             loader: 'babel-loader',
           }]

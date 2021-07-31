@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types'
 
 import { Form } from 'semantic-ui-react'
 
-function BlogForm(props) {
+const BlogForm = (props) => {
   const { handleSubmit, title, author, url, hide } = props
   const onSubmit = (event) => {
     handleSubmit(event)

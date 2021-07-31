@@ -13,7 +13,7 @@ import BlogList from 'Presentationals/BlogList'
 import { useField } from 'Hooks'
 import { checkUrl, getFieldsValues } from 'Lib'
 
-function BlogsPage(props) {
+const BlogsPage = (props) => {
   const title = useField('text', 'title')
   const author = useField('text', 'author')
   const url = useField('text', 'url')

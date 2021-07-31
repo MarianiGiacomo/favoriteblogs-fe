@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types'
 
 import { Button } from 'semantic-ui-react'
 
-function Togglable(props) {
+const Togglable = (props) => {
   const { buttonLabel, children } = props
   const [visible, setVisible] = useState(false)
 
