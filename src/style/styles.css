@@ -28,6 +28,7 @@ img {
 
 .card {
 	max-width: fit-content;
+	width: -moz-fit-content;
 	margin: 5% auto;
 	text-align: center;
 	padding: 5%;
