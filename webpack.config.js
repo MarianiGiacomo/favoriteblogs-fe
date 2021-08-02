@@ -29,6 +29,7 @@ const config = (env, argv) => {
 			alias: {
 				Containers: path.resolve(__dirname, 'src/components/container'),
 				Presentationals: path.resolve(__dirname, 'src/components/presentational'),
+				Pages: path.resolve(__dirname, 'src/components/pages'),
 				Forms: path.resolve(__dirname, 'src/components/forms'),
 				Reducers: path.resolve(__dirname, 'src/reducers'),
 				Hooks: path.resolve(__dirname, 'src/hooks'),

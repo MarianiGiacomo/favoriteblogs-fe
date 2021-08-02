@@ -8,12 +8,12 @@ import { setToken, setUser } from 'Reducers/loginReducer'
 
 import { Container } from 'semantic-ui-react'
 import LoginNav from "Presentationals/LoginNav"
-import HomePage from "Containers/HomePage"
+import HomePage from "Pages/HomePage"
 
 const { default: LoggedInContent } = await import(/* webpackPreload: true */'Containers/LoggedInContent')
 const { default: Notification } = await import(/* webpackPreload: true */'Presentationals/Notification')
-const { default: LoginPage } = await import(/* webpackPrefetch: true */'Containers/LoginPage')
-const { default: SignupPage } = await import(/* webpackPrefetch: true */'Containers/SignupPage')
+const { default: LoginPage } = await import(/* webpackPrefetch: true */'Pages/LoginPage')
+const { default: SignupPage } = await import(/* webpackPrefetch: true */'Pages/SignupPage')
 
 const App = (props) => {
   const {

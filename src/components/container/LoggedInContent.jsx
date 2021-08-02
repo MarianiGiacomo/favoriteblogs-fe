@@ -10,11 +10,10 @@ import { initializeBlogs } from 'Reducers/blogReducer'
 
 import Notification from 'Presentationals/Notification'
 import Nav from 'Presentationals/Nav'
-import UsersPage from "./UsersPage"
-const { default: BlogsPage } = await import(/* webpackPrefetch: true */'Containers/BlogsPage')
+import BlogsPage from 'Pages/BlogsPage'
 const { default: Blog } = await import(/* webpackPrefetch: true */'Containers/Blog')
 const { default: User } = await import(/* webpackPrefetch: true */'Containers/User')
-const { default: UserList } = await import(/* webpackPrefetch: true */'Containers/UsersPage')
+const { default: UsersPage } = await import(/* webpackPrefetch: true */'Pages/UsersPage')
 
 const LoggedInContent = (props) => {
   const [loading, setLoading] = useState(true)
@@ -41,7 +40,6 @@ const LoggedInContent = (props) => {
           </>
           : null
         }
-				{/* <main aria-live="polite"> */}
 					<Route exact path='/' render={() => <BlogsPage /> }/>
 					<Route path='/blogs/:id' render={({ match }) => <Blog match={match} />} />
 					<Route exact path='(/blogs)' render={() => <Redirect to='/'/>} />
@@ -49,7 +47,6 @@ const LoggedInContent = (props) => {
 					<Route path='/users/:id' render={({ match }) => <User match={match} />} />
 					<Route exact path='/users/)' render={() => <Redirect to='/users'/>} />
 					<Route exact path='/users' render={() => <UsersPage /> } />
-				{/* </main> */}
       </Router>
     </div>
   )
