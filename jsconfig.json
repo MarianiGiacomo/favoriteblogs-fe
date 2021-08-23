@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // define to your liking
+    "baseUrl": "./src"
+  },
+  "exclude": ["node_modules"] // Optional
+}

@@ -3,15 +3,15 @@ import React from "react"
 import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 
-import { setNotification } from 'Reducers/notificationReducer'
-import { createBlog } from 'Reducers/blogReducer'
+import { setNotification } from 'reducers/notificationReducer'
+import { createBlog } from 'reducers/blogReducer'
 
-import Togglable from 'Containers/Togglable'
-import BlogForm from 'Forms/BlogForm'
-import BlogList from 'Presentationals/BlogList'
+import Togglable from 'components/container/Togglable'
+import BlogForm from 'components/forms/BlogForm'
+import BlogList from 'components/presentational/BlogList'
 
-import { useField } from 'Hooks'
-import { checkUrl, getFieldsValues } from 'Lib'
+import { useField } from 'hooks'
+import { checkUrl, getFieldsValues } from 'lib'
 
 const BlogsPage = (props) => {
   const title = useField('text', 'title')

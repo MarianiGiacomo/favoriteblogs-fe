@@ -3,14 +3,14 @@ import React from "react"
 import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 
-import { setNotification } from 'Reducers/notificationReducer'
-import { setToken, setUser } from 'Reducers/loginReducer'
+import { setNotification } from 'reducers/notificationReducer'
+import { setToken, setUser } from 'reducers/loginReducer'
 
-import LoginForm from 'Forms/LoginForm'
+import LoginForm from 'components/forms/LoginForm'
 
-import loginService from 'Services/login'
-import { useField } from 'Hooks'
-import { getFieldsValues } from 'Lib'
+import loginService from 'services/login'
+import { useField } from 'hooks'
+import { getFieldsValues } from 'lib/'
 
 const LoginPage = (props) => {
   const username = useField('text', 'username')

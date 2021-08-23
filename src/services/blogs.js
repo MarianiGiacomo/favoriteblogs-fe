@@ -29,6 +29,7 @@ const remove = async (token, id) => {
 const getComments = async (id) => {
   // const response = await axios.get(`${baseUrl}/${id}/comments`)
   // return response.data
+	console.log('real getComments')
   const response = await fetch(`${baseUrl}/${id}/comments`)
   return await responseOrThrow(response)
 }

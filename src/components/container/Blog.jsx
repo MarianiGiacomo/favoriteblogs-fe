@@ -4,16 +4,16 @@ import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
-import { setNotification } from 'Reducers/notificationReducer'
-import { getBlogComments, addComment } from 'Reducers/commentReducer'
-import { removeBlog, likeBlog } from 'Reducers/blogReducer'
+import { setNotification } from 'reducers/notificationReducer'
+import { getBlogComments, addComment } from 'reducers/commentReducer'
+import { removeBlog, likeBlog } from 'reducers/blogReducer'
 
 import { Button, List } from 'semantic-ui-react'
-import Togglable from 'Containers/Togglable'
-import CommentForm from "Forms/CommentForm"
+import Togglable from 'components/container/Togglable'
+import CommentForm from "components/forms/CommentForm"
 
-import { useField } from 'Hooks'
-import { emptyObj } from 'Lib'
+import { useField } from 'hooks'
+import { emptyObj } from 'lib'
 
 const Blog = (props) => {
   const [removed, setRemoved] = useState(false)
@@ -68,8 +68,8 @@ const Blog = (props) => {
       <main>
         <h1>{blog.title}</h1>
         <h2>By {blog.author}</h2>
-        <p><a href={blog.url} target='_blank' rel='noopener noreferrer' >{blog.url}</a></p>
-        <p>Likes: {blog.likes}</p>
+        <p className="link"><a href={blog.url} target='_blank' rel='noopener noreferrer' >{blog.url}</a></p>
+        <p className="likes">Likes: {blog.likes}</p>
         <Button onClick={() => like()} >Like</Button>
         <p>Added by {blog.user.name}</p>
         {

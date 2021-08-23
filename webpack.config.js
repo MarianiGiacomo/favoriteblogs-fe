@@ -25,19 +25,19 @@ const config = (env, argv) => {
       publicPath: asset_path,
 			chunkFilename: "[name].js"
     },
-		resolve: {
-			alias: {
-				Containers: path.resolve(__dirname, 'src/components/container'),
-				Presentationals: path.resolve(__dirname, 'src/components/presentational'),
-				Pages: path.resolve(__dirname, 'src/components/pages'),
-				Forms: path.resolve(__dirname, 'src/components/forms'),
-				Reducers: path.resolve(__dirname, 'src/reducers'),
-				Hooks: path.resolve(__dirname, 'src/hooks'),
-				Lib: path.resolve(__dirname, 'src/lib'),
-				Services: path.resolve(__dirname, 'src/services'),
-				Assets: path.resolve(__dirname, 'src/assets') 
-			}
-		},
+		// resolve: {
+		// 	alias: {
+		// 		Containers: path.resolve(__dirname, 'src/components/container'),
+		// 		Presentationals: path.resolve(__dirname, 'src/components/presentational'),
+		// 		Pages: path.resolve(__dirname, 'src/components/pages'),
+		// 		Forms: path.resolve(__dirname, 'src/components/forms'),
+		// 		Reducers: path.resolve(__dirname, 'src/reducers'),
+		// 		Hooks: path.resolve(__dirname, 'src/hooks'),
+		// 		Lib: path.resolve(__dirname, 'src/lib'),
+		// 		Services: path.resolve(__dirname, 'src/services'),
+		// 		Assets: path.resolve(__dirname, 'src/assets') 
+		// 	}
+		// },
     // webpack 5 comes with devServer which loads in development mode
     devServer: {
       port: 3000,

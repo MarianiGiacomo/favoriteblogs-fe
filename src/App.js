@@ -4,16 +4,22 @@ import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 import {  BrowserRouter as Router, Route } from "react-router-dom"
 
-import { setToken, setUser } from 'Reducers/loginReducer'
+// import { setToken, setUser } from 'Reducers/loginReducer'
+import { setToken, setUser } from 'reducers/loginReducer'
 
 import { Container } from 'semantic-ui-react'
-import LoginNav from "Presentationals/LoginNav"
-import HomePage from "Pages/HomePage"
+import LoginNav from "components/presentational/LoginNav"
+import HomePage from "components/pages/HomePage"
 
-const { default: LoggedInContent } = await import(/* webpackPreload: true */'Containers/LoggedInContent')
-const { default: Notification } = await import(/* webpackPreload: true */'Presentationals/Notification')
-const { default: LoginPage } = await import(/* webpackPrefetch: true */'Pages/LoginPage')
-const { default: SignupPage } = await import(/* webpackPrefetch: true */'Pages/SignupPage')
+// const { default: LoggedInContent } = await import(/* webpackPreload: true */'Containers/LoggedInContent')
+// const { default: Notification } = await import(/* webpackPreload: true */'Presentationals/Notification')
+// const { default: LoginPage } = await import(/* webpackPrefetch: true */'Pages/LoginPage')
+// const { default: SignupPage } = await import(/* webpackPrefetch: true */'Pages/SignupPage')
+
+import LoggedInContent from 'components/container/LoggedInContent'
+import Notification from 'components/presentational/Notification'
+import LoginPage from 'components/pages/LoginPage'
+import SignupPage from 'components/pages/SignupPage'
 
 const App = (props) => {
   const {
