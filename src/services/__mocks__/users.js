@@ -1,5 +1,3 @@
-import { postReq, responseOrThrow } from './fetch'
-
 // eslint-disable-next-line no-undef
 const users = [
 	{
@@ -19,12 +17,14 @@ const users = [
 	}
 ]
 
-const getAll = () => {
-	return Promise.resolve(users)
-}
+const getAll = jest.fn( () => {
+		return Promise.resolve(users)
+	}
+)
 
-const createUser = (credentials) => {
-	return Promise.resolve(true)
-}
+const createUser = jest.fn(credentials => {
+		return Promise.resolve(true)
+	}
+)
 
 export default { getAll, createUser }

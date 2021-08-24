@@ -9,8 +9,8 @@ import { setNotification } from 'Reducers/notificationReducer'
 
 const Notification = (props) => {
   const { notification, setNotification } = props
-  const message = notification.message
-  const error = notification.error
+  const message = notification?.message
+  const error = notification?.error
 
   const closeModal = () => {
     setNotification('')
