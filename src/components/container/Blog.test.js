@@ -3,46 +3,41 @@
  */
 
 import React from 'react'
+import {  BrowserRouter as Router } from "react-router-dom"
 import '@testing-library/jest-dom/extend-expect'
 import { render, cleanup, fireEvent } from '@testing-library/react'
-// import SimpleBlog from './SimpleBlog'
+
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import blogReducer from 'reducers/blogReducer'
-import commentReducer from 'reducers/commentReducer'
-import loginReducer from 'reducers/loginReducer'
-import notificationReducer from 'reducers/notificationReducer'
-import usersReducer from 'reducers/usersReducer'
 
 import Blog from 'components/container/Blog'
-import blogsServiceMock from 'services/__mocks__/blogs'
+
+import blogServiceMock from 'services/__mocks__/blogs'
+import blogService from 'services/blogs'
 
 jest.mock('../../services/blogs')
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
+const blogs = blogServiceMock.blogs
+const comments = blogServiceMock.comments
+const login = { username: 'user1'}
+const initialState = { blogs,  login , comments }
+const store = mockStore(initialState)
 
-afterEach(cleanup)
+const match = (blog) => ({ params: { id: blog.id } })
+
+
 
 describe('test blog component', () => {
-	const blogs = blogsServiceMock.blogs
-	const comments = blogsServiceMock.comments
-
-	const initialState = { blogs,  login: {}, comments }
-	const store = mockStore(initialState)
-	
+	afterEach(cleanup)
   test('renders right content', () => {
 		blogs.forEach( b => {
-			const match = {
-				params: {
-					id: b.id
-				}
-			}
 			const component = render(
 				<Provider store={store}>
 					<Blog 
-						match={match}
+						match={match(b)}
 					/>
 				</Provider>
 			)
@@ -59,18 +54,48 @@ describe('test blog component', () => {
 		})
   })
 
-  // test('clicking the likes butotn twice', async () => {
-  //   const mockOnClick = jest.fn()
+  test('clicking the like buttons calls update in blog service', () => {
+		blogService.update = jest.fn();
+    const { getByText } = render(
+			<Provider store={store}>
+				<Blog 
+					match={match(blogs[0])}
+				/>
+			</Provider>
+    )
+    const button = getByText('Like')
+    fireEvent.click(button)
+    fireEvent.click(button)
+    expect(blogService.update.mock.calls.length).toBe(2)
+  })
 
-  //   const { getByText } = render(
-  //     <SimpleBlog blog={blog} onClick={mockOnClick}/>
-  //   )
+	test('displays comments', () => {
+    const { getByText } = render(
+			<Provider store={store}>
+				<Blog 
+					match={match(blogs[0])}
+				/>
+			</Provider>
+    )
+		const comment = getByText(comments[0].comment)
+		expect(comment).toHaveTextContent(comments[0].comment)
+	})
 
-  //   const button = getByText('likes')
-  //   fireEvent.click(button)
-  //   fireEvent.click(button)
-
-  //   expect(mockOnClick.mock.calls.length).toBe(2)
-  // })
+	test('clicking the remove buttons calls remove in blog service', () => {
+		blogService.remove = jest.fn()
+		window.confirm = jest.fn(() => true)
+    const { getByText } = render(
+			<Provider store={store}>
+				<Router>
+					<Blog 
+						match={match(blogs[0])}
+					/>
+				</Router>
+			</Provider>
+    )
+    const button = getByText('Remove')
+    fireEvent.click(button)
+    expect(blogService.remove.mock.calls.length).toBe(1)
+	})
 })
 

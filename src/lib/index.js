@@ -1,6 +1,6 @@
 export const filterBlogs = (blogs, user) => {
   return blogs.filter(blog => {
-    return blog.user.username === user.username
+    return blog?.user?.username === user.username
   }
   )
 }
@@ -22,9 +22,25 @@ export const checkUrl = (url) => {
 
 export const populateWithBlogs = (users, blogs) => {
   return users.map( u => {
-    let uBlogs = blogs.filter( b => b.user.id === u.id )
+    let uBlogs = blogs.filter( b => b?.user?.id === u.id )
     return { ...u, blogs: uBlogs }
   })
 }
 
 export const emptyObj = (obj) => Object.keys(obj).length === 0
+
+export async function callWithTryCatchAsync(tryFunc, catchFunc) {
+	try {
+		await tryFunc()
+	} catch (exception) {
+		catchFunc(exception)
+	}
+}
+
+export const constructComment = (comment, blog) => {
+	return {
+		comment: comment.value,
+		timeStamp: new Date().toDateString(),
+		blog: blog.id
+	}
+}

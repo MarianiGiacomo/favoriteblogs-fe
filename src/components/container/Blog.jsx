@@ -13,7 +13,8 @@ import Togglable from 'components/container/Togglable'
 import CommentForm from "components/forms/CommentForm"
 
 import { useField } from 'hooks'
-import { emptyObj } from 'lib'
+import { emptyObj, construcComment, callWithTryCatchAsync } from 'lib'
+import { constructComment } from "lib/index"
 
 const Blog = (props) => {
   const [removed, setRemoved] = useState(false)
@@ -24,7 +25,10 @@ const Blog = (props) => {
 
   useEffect(() => {
     if(!emptyObj(blog) && !removed) {
-      getComments()
+			callWithTryCatchAsync(
+				() => getBlogComments(blog), 
+				(exception) => setNotification({ error: `Could not fetch comments: ${exception.message}` }) 
+			)
     }
   },[blog])
 
@@ -36,20 +40,17 @@ const Blog = (props) => {
     }
   },[blogs])
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, newComment, login) => {
     event.preventDefault()
-    const newComment = {
-      comment: comment.value,
-      timeStamp: new Date().toDateString(),
-      blog: blog.id
-    }
-    try {
-      await addComment(login.token, newComment)
-      setNotification({ message: `A new comment "${newComment.comment}" added` })
-      comment.setValue('')
-    } catch (exception) {
-      setNotification({ error: `Could not add the comment: ${exception.message}` })
-    }
+		return async (cleanup) => {
+			try {
+				await addComment(login.token, newComment)
+				setNotification({ message: `A new comment "${newComment.comment}" added` })
+				cleanup()
+			} catch (exception) {
+				setNotification({ error: `Could not add the comment: ${exception.message}` })
+			}
+		}
   }
 
   if(removed || blog === undefined){
@@ -66,19 +67,27 @@ const Blog = (props) => {
   else {
     return (
       <main>
-        <h1>{blog.title}</h1>
-        <h2>By {blog.author}</h2>
-        <p className="link"><a href={blog.url} target='_blank' rel='noopener noreferrer' >{blog.url}</a></p>
-        <p className="likes">Likes: {blog.likes}</p>
-        <Button onClick={() => like()} >Like</Button>
-        <p>Added by {blog.user.name}</p>
+        <h1>{blog?.title}</h1>
+        <h2>By {blog?.author}</h2>
+        <p className="link"><a href={blog?.url} target='_blank' rel='noopener noreferrer' >{blog.url}</a></p>
+        <p className="likes">Likes: {blog?.likes}</p>
+        <Button onClick={() => like(blog)} >Like</Button>
+        <p>Added by {blog?.user?.name}</p>
         {
-          login.username === blog.user.username
-            ? <Button onClick={() => remove()} >Remove</Button>
+          login?.username === blog?.user?.username
+            ? <Button onClick={() => remove(blog, login)(() => setRemoved(true))} >Remove</Button>
             : null
         }
         <Togglable buttonLabel='Add comment'>
-          <CommentForm comment={comment} handleSubmit={handleSubmit}/>
+          <CommentForm 
+						comment={comment} 
+						handleSubmit={
+							(event) => { 
+								handleSubmit(event, constructComment(comment, blog), login)
+								(() => comment.setValue('')) 
+							}
+						}
+					/>
         </Togglable>
         <h3>Comments</h3>
         <List divided relaxed>
@@ -86,7 +95,7 @@ const Blog = (props) => {
             comments.length
               ? comments.map((b,i) =>
                 <List.Item key={i} >
-                  <p>{b.comment}</p><p>by {b.user.name} - {b.timeStamp}</p>
+                  <p>{b?.comment}</p><p>by {b?.user?.name} - {b?.timeStamp}</p>
                 </List.Item>)
               : <List.Item ><p>No comments yet</p></List.Item>
           }
@@ -95,31 +104,24 @@ const Blog = (props) => {
     )
   }
 
-  async function getComments() {
-    try {
-      await getBlogComments(blog)
-    } catch (exception) {
-      setNotification({ error: `Could not fetch comments: ${exception.message}` })
-    }
+  async function like(blog) {
+		callWithTryCatchAsync(
+			() => likeBlog(blog),
+			(exception) => setNotification({ error: `Could not add like: ${exception.message}` })
+		)
   }
 
-  async function like() {
-    try {
-      await likeBlog(blog)
-    } catch (exception) {
-      setNotification({ error: `Could not add like: ${exception.message}` })
-    }
-  }
-
-  function remove() {
+  function remove(blog, login) {
     if(window.confirm(`Do you want to remove the blog ${blog.title} by ${blog.author}?`)) {
-      try {
-        removeBlog(login.token, blog)
-        setRemoved(true)
-        setNotification({ message: `Blog ${blog.title} by ${blog.author} removed` })
-      } catch (exception) {
-        setNotification({ error: `Could not remove the blog: ${exception.message}` })
-      }
+			return (cleanup) => {
+				try {
+					removeBlog(login.token, blog)
+					setNotification({ message: `Blog ${blog.title} by ${blog.author} removed` })
+					cleanup()
+				} catch (exception) {
+					setNotification({ error: `Could not remove the blog: ${exception.message}` })
+				}
+			}
     }
   }
 
