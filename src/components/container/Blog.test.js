@@ -1,41 +1,28 @@
 /**
  * @jest-environment jsdom
  */
-
 import React from 'react'
+
 import {  BrowserRouter as Router } from "react-router-dom"
 import '@testing-library/jest-dom/extend-expect'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 
-import configureStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
 import Blog from 'components/container/Blog'
 
-import blogServiceMock from 'services/__mocks__/blogs'
+import { blogs, comments, users, match, getStore } from 'lib/testHelpers'
+
 import blogService from 'services/blogs'
 
 jest.mock('../../services/blogs')
-
-const middlewares = [thunk]
-const mockStore = configureStore(middlewares)
-const blogs = blogServiceMock.blogs
-const comments = blogServiceMock.comments
-const login = { username: 'user1'}
-const initialState = { blogs,  login , comments }
-const store = mockStore(initialState)
-
-const match = (blog) => ({ params: { id: blog.id } })
-
-
 
 describe('test blog component', () => {
 	afterEach(cleanup)
   test('renders right content', () => {
 		blogs.forEach( b => {
 			const component = render(
-				<Provider store={store}>
+				<Provider store={getStore(blogs, users[0], comments)}>
 					<Blog 
 						match={match(b)}
 					/>
@@ -57,7 +44,7 @@ describe('test blog component', () => {
   test('clicking the like buttons calls update in blog service', () => {
 		blogService.update = jest.fn();
     const { getByText } = render(
-			<Provider store={store}>
+			<Provider store={getStore(blogs, users[0], comments)}>
 				<Blog 
 					match={match(blogs[0])}
 				/>
@@ -71,7 +58,7 @@ describe('test blog component', () => {
 
 	test('displays comments', () => {
     const { getByText } = render(
-			<Provider store={store}>
+			<Provider store={getStore(blogs, users[0], comments)}>
 				<Blog 
 					match={match(blogs[0])}
 				/>
@@ -85,7 +72,7 @@ describe('test blog component', () => {
 		blogService.remove = jest.fn()
 		window.confirm = jest.fn(() => true)
     const { getByText } = render(
-			<Provider store={store}>
+			<Provider store={getStore(blogs, users[0], comments)}>
 				<Router>
 					<Blog 
 						match={match(blogs[0])}

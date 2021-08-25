@@ -1,10 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-
 import React from 'react'
+
 import '@testing-library/jest-dom/extend-expect'
 import { render, cleanup, fireEvent } from '@testing-library/react'
+
 import Togglable from './Togglable'
 
 const buttonLabel = "show"
@@ -42,8 +43,6 @@ describe('test togglable content', () => {
 
 function TestDiv(props) {
 	return (
-		<div className='testDiv'>
-
-		</div>
+		<div className='testDiv'></div>
 	)
 }

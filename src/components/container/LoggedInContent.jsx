@@ -60,7 +60,6 @@ const LoggedInContent = (props) => {
       await getUsers()
       setLoading(false)
     } catch (exception) {
-			console.log(exception)
       setNotification({ error: `Could not fetch data: ${exception.message}. Retrying...` })
       setTimeout( () => {
         fetchWithRetry(timeout)
