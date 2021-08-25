@@ -27,6 +27,8 @@ export const populateWithBlogs = (users, blogs) => {
   })
 }
 
+export const getUserById = (users,id) => users.find(u => u.id === id)
+
 export const emptyObj = (obj) => Object.keys(obj).length === 0
 
 export async function callWithTryCatchAsync(tryFunc, catchFunc) {

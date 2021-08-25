@@ -15,7 +15,7 @@ import { blogs, comments, users, getStore } from 'lib/testHelpers'
 jest.mock('./services/blogs')
 jest.mock('./services/users.js')
 
-describe('<App />', () => {
+describe('<App/>', () => {
 	afterEach(cleanup)
   test('if no user logged in, displays homepage', async () => {
     const component = render(

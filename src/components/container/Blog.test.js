@@ -17,7 +17,7 @@ import blogService from 'services/blogs'
 
 jest.mock('../../services/blogs')
 
-describe('test blog component', () => {
+describe('<Blog/>', () => {
 	afterEach(cleanup)
   test('renders right content', () => {
 		blogs.forEach( b => {

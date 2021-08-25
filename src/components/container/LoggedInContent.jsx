@@ -29,7 +29,7 @@ const LoggedInContent = (props) => {
 
   useEffect( async () => {
     fetchWithRetry(2)
-  },)
+  }, [])
 
   return (
     <div className='loggedin-content'>

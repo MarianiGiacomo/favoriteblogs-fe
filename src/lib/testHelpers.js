@@ -1,12 +1,12 @@
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-export const match = (blog) => ({ params: { id: blog.id } })
+export const match = (el) => ({ params: { id: el.id } })
 
-export function getStore(blogs, login, comments){
+export function getStore(blogs, login, comments, users){
 	const middlewares = [thunk]
 	const mockStore = configureStore(middlewares)
-	const initialState = { blogs, login , comments }
+	const initialState = { blogs, login , comments, users }
 	return mockStore(initialState)
 }
 
@@ -16,7 +16,7 @@ export const blogs = [
     author: 'author 1',
     title: 'title 1',
     user: {
-      _id: '5a437a9e514ab7f168ddf138',
+      id: '5a437a9e514ab7f168ddf138',
       username: 'user1',
       name: 'User Uno'
     },
@@ -28,9 +28,9 @@ export const blogs = [
     author: 'author 2',
     title: 'title 2',
     user: {
-      _id: '5a437a9e514ab7f168ddf138',
-      username: 'user2',
-      name: 'User Due'
+      id: '5a437a9e514ab7f168ddf138',
+      username: 'user1',
+      name: 'User Uno'
     },
 		url: 'https://testurl2.com',
 		likes: 2
@@ -40,9 +40,9 @@ export const blogs = [
     author: 'author 3',
     title: 'title 3',
     user: {
-      _id: '5a437a9e514ab7f168ddf138',
-      username: 'user3',
-      name: 'User Tre'
+      id: '5a437a9e514ab7f168ddf139',
+      username: 'user2',
+      name: 'User Due'
     },
 		url: 'https://testurl3.com',
 		likes: 3
@@ -62,17 +62,17 @@ export const comments = [
 
 export const users = [
 	{
-		_id: '5a437a9e514ab7f168ddf138',
+		id: '5a437a9e514ab7f168ddf138',
 		username: 'user1',
 		name: 'User Uno'
 	},
 	{
-		_id: '5a437a9e514ab7f168ddf138',
+		id: '5a437a9e514ab7f168ddf139',
 		username: 'user2',
 		name: 'User Due'
 	},
 	{
-		_id: '5a437a9e514ab7f168ddf138',
+		id: '5a437a9e514ab7f168ddf140',
 		username: 'user3',
 		name: 'User Tre'
 	}

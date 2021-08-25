@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom"
 
 import { List } from 'semantic-ui-react'
 
-import { emptyObj, populateWithBlogs } from 'Lib'
+import { emptyObj, populateWithBlogs, getUserById } from 'lib'
 
 const User = (props) => {
   const [user, setUser] = useState({})
@@ -14,9 +14,9 @@ const User = (props) => {
 
   useEffect(() => {
     if(users.length && blogs.length) {
-      const pUsers = populateWithBlogs(users, blogs)
-      const fUser = pUsers.find(u => u.id === match.params.id)
-      setUser(fUser)
+      // const pUsers = populateWithBlogs(users, blogs)
+      // const fUser = pUsers.find(u => u.id === match.params.id)
+      setUser(getUserById(populateWithBlogs(users, blogs), match.params.id))
     }
   },[users, blogs])
 
@@ -41,8 +41,8 @@ const User = (props) => {
             user.blogs.length
               ? user.blogs.map((b,i) =>
                 <List.Item key={i} >
-                  <p>{b.title}</p>
-                  <p>by {b.author}</p>
+                  <p className="blog-title">{b.title}</p>
+                  <p className="blog-author">by {b.author}</p>
                   <a href={b.url}>{b.url}</a>
                 </List.Item>
               )
