@@ -14,8 +14,6 @@ const User = (props) => {
 
   useEffect(() => {
     if(users.length && blogs.length) {
-      // const pUsers = populateWithBlogs(users, blogs)
-      // const fUser = pUsers.find(u => u.id === match.params.id)
       setUser(getUserById(populateWithBlogs(users, blogs), match.params.id))
     }
   },[users, blogs])

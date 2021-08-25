@@ -3,17 +3,14 @@
  */
 import React from 'react'
 
-import {  BrowserRouter as Router } from "react-router-dom"
 import '@testing-library/jest-dom/extend-expect'
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, cleanup } from '@testing-library/react'
 
 import { Provider } from 'react-redux'
 import User from 'components/container/User'
 
 import { blogs, comments, users, match, getStore } from 'lib/testHelpers'
 import { populateWithBlogs, getUserById } from 'lib/index'
-
-import blogService from 'services/blogs'
 
 describe('<User/>', () => {
 	let component;

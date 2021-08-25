@@ -15,7 +15,7 @@ import { blogs, comments, users, match, getStore } from 'lib/testHelpers'
 
 import blogService from 'services/blogs'
 
-jest.mock('../../services/blogs')
+jest.mock('services/blogs')
 
 describe('<Blog/>', () => {
 	afterEach(cleanup)

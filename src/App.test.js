@@ -12,8 +12,8 @@ import App from './App'
 
 import { blogs, comments, users, getStore } from 'lib/testHelpers'
 
-jest.mock('./services/blogs')
-jest.mock('./services/users.js')
+jest.mock('services/blogs')
+jest.mock('services/users.js')
 
 describe('<App/>', () => {
 	afterEach(cleanup)
