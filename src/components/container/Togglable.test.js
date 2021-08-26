@@ -12,7 +12,7 @@ const buttonLabel = "show"
 
 afterEach(cleanup)
 
-describe('test togglable content', () => {
+describe('<Togglable/>', () => {
   let component
 
   beforeEach(() => {

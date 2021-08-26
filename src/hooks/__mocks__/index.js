@@ -1,4 +1,4 @@
-export const useField = (type, name) => {
+const useField = (type, name) => {
 	let value = ''
 
 	function setValue(newValue){
@@ -16,4 +16,8 @@ export const useField = (type, name) => {
     onChange,
     setValue,
   }
+}
+
+export default {
+	useField
 }

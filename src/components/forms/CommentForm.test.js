@@ -9,7 +9,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import hooks from 'hooks'
 
-import BlogForm from 'components/forms/BlogForm'
+import CommentForm from 'components/forms/CommentForm'
 
 const setValue = jest.fn( (value) => value)
 
@@ -30,19 +30,15 @@ hooks.useField = jest.fn( (type, name) => {
 	}
 )
 
-describe('<BlogForm/>', () => {
+describe('<CommentForm/>', () => {
 	const useField = hooks.useField
-  const title = useField('text', 'title')
-  const author = useField('text', 'author')
-  const url = useField('text', 'url')
+  const comment = useField('text', 'Comment')
 	const handleSubmit = jest.fn()
 	let component;
 	beforeEach( () => {
 		component = render(
-			<BlogForm 
-				title={title}
-				author={author}
-				url={url}
+			<CommentForm 
+				comment={comment}
 				handleSubmit={handleSubmit}
 			/>
 		)
@@ -50,9 +46,9 @@ describe('<BlogForm/>', () => {
 	afterEach(cleanup)
 
 	test('Receives user input', () => {
-		const titleInput = component.getByText('Title')
-		const text = 'test'
-		userEvent.type(titleInput, text)
+		const commentInput = component.getByText('Leave a comment')
+		const text = 'Comment'
+		userEvent.type(commentInput, text)
 		expect(setValue.mock.calls.length).toBe(text.length)
 	})
 

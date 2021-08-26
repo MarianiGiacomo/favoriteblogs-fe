@@ -15,3 +15,7 @@ export const useField = (type, name) => {
     setValue,
   }
 }
+
+export default {
+	useField
+}
