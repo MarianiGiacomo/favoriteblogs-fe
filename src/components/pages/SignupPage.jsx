@@ -3,13 +3,13 @@ import React from "react"
 import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 
-import { setNotification } from 'reducers/notificationReducer'
+import { setNotification } from 'src/reducers/notificationReducer'
 
-import SignupForm from 'components/forms/SignupForm'
+import SignupForm from 'src/components/forms/SignupForm'
 
-import userService from 'services/users'
-import { useField } from 'hooks/'
-import { getFieldsValues } from 'lib/'
+import userService from 'src/services/users'
+import { useField } from 'src/hooks'
+import { getFieldsValues } from 'src/lib'
 
 const SignupPage = props => {
   const username = useField('text', 'username')
@@ -17,11 +17,12 @@ const SignupPage = props => {
   const password = useField('password', 'password')
   const { setNotification } = props
 
-  const handleSignup = async (event) => {
+  const handleSignup = async (event, cleanup) => {
     event.preventDefault()
     try {
       const newUser = await userService.createUser(getFieldsValues(username, name, password))
       setNotification({ message: `User with username ${newUser.username} created` })
+			cleanup()
     } catch (exception) {
       setNotification({ error: `Could not create user: ${exception.message}` })
     }
@@ -33,9 +34,15 @@ const SignupPage = props => {
       <p>
 				&#10071;<strong>The created user will be automatically removed within 24 hours</strong>
       </p>
-      <SignupForm handleSignup={handleSignup} username={username} name={name} password={password}/>
+      <SignupForm 
+				handleSignup={(event) => handleSignup(event, () => clearFields(username, name, password))} 
+				username={username} name={name} password={password}/>
     </div>
   )
+
+	function clearFields(...fields){
+		fields.forEach(f => f.setValue(''))
+	}
 }
 
 const mapDispatchToProps =   {

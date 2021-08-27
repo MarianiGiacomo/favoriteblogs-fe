@@ -9,7 +9,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import hooks from 'src/hooks'
 
-import CommentForm from 'src/components/forms/CommentForm'
+import SignupForm from 'src/components/forms/SignupForm'
 
 const setValue = jest.fn( (value) => value)
 
@@ -30,31 +30,35 @@ hooks.useField = jest.fn( (type, name) => {
 	}
 )
 
-describe('<CommentForm/>', () => {
+describe('<SignupForm/>', () => {
 	const useField = hooks.useField
-  const comment = useField('text', 'Comment')
-	const handleSubmit = jest.fn()
+  const username = useField('text', 'username')
+  const name = useField('text', 'name')
+  const password = useField('password', 'password')
+	const handleSignup = jest.fn()
 	let component;
 	beforeEach( () => {
 		component = render(
-			<CommentForm 
-				comment={comment}
-				handleSubmit={handleSubmit}
+			<SignupForm 
+				username={username}
+				password={password}
+				name={name}
+				handleSignup={handleSignup}
 			/>
 		)
 	})
 	afterEach(cleanup)
 
 	test('Receives user input', () => {
-		const commentInput = component.getByText('Leave a comment')
-		const text = 'Comment'
-		userEvent.type(commentInput, text)
+		const usernameInput = component.getByText('Username')
+		const text = 'username'
+		userEvent.type(usernameInput, text)
 		expect(setValue.mock.calls.length).toBe(text.length)
 	})
 
 	test('Submits the data', () => {
 		let submitButton = component.container.querySelector('[type="submit"]')
 		fireEvent.click(submitButton)
-		expect(handleSubmit.mock.calls.length).toBe(1)
+		expect(handleSignup.mock.calls.length).toBe(1)
 	})
 })

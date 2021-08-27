@@ -8,12 +8,12 @@ import { render, cleanup, waitFor } from '@testing-library/react'
 
 import { Provider } from 'react-redux'
 
-import LoggedInContent from 'components/container/LoggedInContent'
+import LoggedInContent from 'src/components/container/LoggedInContent'
 
-import { getStore, blogs, users, comments } from 'lib/testHelpers'
+import { getStore, blogs, users, comments } from 'src/lib/testHelpers'
 
-import blogService from 'services/blogs'
-import userService from 'services/users'
+import blogService from 'src/services/blogs'
+import userService from 'src/services/users'
 
 describe('<LoggedInContent/>', () => {
 	afterEach(cleanup)

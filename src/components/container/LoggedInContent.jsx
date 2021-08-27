@@ -4,19 +4,19 @@ import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 import { Redirect, BrowserRouter as Router, Route } from "react-router-dom"
 
-import { setNotification } from 'reducers/notificationReducer'
-import { getUsers } from 'reducers/usersReducer'
-import { initializeBlogs } from 'reducers/blogReducer'
+import { setNotification } from 'src/reducers/notificationReducer'
+import { getUsers } from 'src/reducers/usersReducer'
+import { initializeBlogs } from 'src/reducers/blogReducer'
 
-import Notification from 'components/presentational/Notification'
-import Nav from 'components/presentational/Nav'
-import BlogsPage from 'components/pages/BlogsPage'
+import Notification from 'src/components/presentational/Notification'
+import Nav from 'src/components/presentational/Nav'
+import BlogsPage from 'src/components/pages/BlogsPage'
 // const { default: Blog } = await import(/* webpackPrefetch: true */'Containers/Blog')
 // const { default: User } = await import(/* webpackPrefetch: true */'Containers/User')
 // const { default: UsersPage } = await import(/* webpackPrefetch: true */'Pages/UsersPage')
-import Blog from 'components/container/Blog'
-import User from 'components/container/User'
-import UsersPage from 'components/pages/UsersPage'
+import Blog from 'src/components/container/Blog'
+import User from 'src/components/container/User'
+import UsersPage from 'src/components/pages/UsersPage'
 
 const LoggedInContent = (props) => {
   const [loading, setLoading] = useState(true)

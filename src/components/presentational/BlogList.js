@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 import { Table } from 'semantic-ui-react'
 
-import { filterBlogs } from 'Lib'
+import { filterBlogs } from 'src/lib'
 
 const BlogList = (props) => {
   const { blogs, login } = props

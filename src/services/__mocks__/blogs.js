@@ -1,4 +1,4 @@
-import { blogs, comments } from "lib/testHelpers"
+import { blogs, comments } from 'src/lib/testHelpers'
 
 const getAll = jest.fn( () => {
 		return Promise.resolve(blogs)

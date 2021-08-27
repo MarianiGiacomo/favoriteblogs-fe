@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom"
 
 import { List } from 'semantic-ui-react'
 
-import { emptyObj, populateWithBlogs, getUserById } from 'lib'
+import { emptyObj, populateWithBlogs, getUserById } from 'src/lib'
 
 const User = (props) => {
   const [user, setUser] = useState({})

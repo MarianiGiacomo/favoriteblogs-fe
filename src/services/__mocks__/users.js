@@ -1,4 +1,4 @@
-import { users } from "lib/testHelpers"
+import { users } from 'src/lib/testHelpers'
 
 const getAll = jest.fn( () => {
 		return Promise.resolve(users)

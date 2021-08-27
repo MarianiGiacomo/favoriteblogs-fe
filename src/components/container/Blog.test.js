@@ -2,20 +2,20 @@
  * @jest-environment jsdom
  */
 import React from 'react'
-
 import {  BrowserRouter as Router } from "react-router-dom"
+
 import '@testing-library/jest-dom/extend-expect'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import { Provider } from 'react-redux'
 
-import Blog from 'components/container/Blog'
+import Blog from 'src/components/container/Blog'
 
-import { blogs, comments, users, match, getStore } from 'lib/testHelpers'
+import { blogs, comments, users, match, getStore } from 'src/lib/testHelpers'
 
-import blogService from 'services/blogs'
+import blogService from 'src/services/blogs'
 
-jest.mock('services/blogs')
+jest.mock('src/services/blogs')
 
 describe('<Blog/>', () => {
 	afterEach(cleanup)
@@ -23,9 +23,11 @@ describe('<Blog/>', () => {
 		blogs.forEach( b => {
 			const component = render(
 				<Provider store={getStore(blogs, users[0], comments)}>
-					<Blog 
-						match={match(b)}
-					/>
+					<Router>
+						<Blog 
+							match={match(b)}
+						/>
+					</Router>
 				</Provider>
 			)
 
@@ -45,9 +47,11 @@ describe('<Blog/>', () => {
 		blogService.update = jest.fn();
     const { getByText } = render(
 			<Provider store={getStore(blogs, users[0], comments)}>
-				<Blog 
-					match={match(blogs[0])}
-				/>
+				<Router>
+					<Blog 
+						match={match(blogs[0])}
+					/>
+				</Router>
 			</Provider>
     )
     const button = getByText('Like')
@@ -59,9 +63,11 @@ describe('<Blog/>', () => {
 	test('displays comments', () => {
     const { getByText } = render(
 			<Provider store={getStore(blogs, users[0], comments)}>
-				<Blog 
-					match={match(blogs[0])}
-				/>
+				<Router>
+					<Blog 
+						match={match(blogs[0])}
+					/>
+				</Router>
 			</Provider>
     )
 		const comment = getByText(comments[0].comment)

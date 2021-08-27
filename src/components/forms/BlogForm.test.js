@@ -7,9 +7,9 @@ import '@testing-library/jest-dom/extend-expect'
 import userEvent from '@testing-library/user-event'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 
-import hooks from 'hooks'
+import hooks from 'src/hooks'
 
-import BlogForm from 'components/forms/BlogForm'
+import BlogForm from 'src/components/forms/BlogForm'
 
 const setValue = jest.fn( (value) => value)
 

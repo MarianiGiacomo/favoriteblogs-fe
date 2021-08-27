@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types'
 
 import { Link } from "react-router-dom"
 
-import Logout from 'components/presentational/Logout'
+import Logout from 'src/components/presentational/Logout'
 import { Menu } from 'semantic-ui-react'
 
 const Nav = (props) => {

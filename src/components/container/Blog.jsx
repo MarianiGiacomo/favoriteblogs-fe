@@ -4,17 +4,16 @@ import { PropTypes } from 'prop-types'
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
-import { setNotification } from 'reducers/notificationReducer'
-import { getBlogComments, addComment } from 'reducers/commentReducer'
-import { removeBlog, likeBlog } from 'reducers/blogReducer'
+import { setNotification } from 'src/reducers/notificationReducer'
+import { getBlogComments, addComment } from 'src/reducers/commentReducer'
+import { removeBlog, likeBlog } from 'src/reducers/blogReducer'
 
 import { Button, List } from 'semantic-ui-react'
-import Togglable from 'components/container/Togglable'
-import CommentForm from "components/forms/CommentForm"
+import Togglable from 'src/components/container/Togglable'
+import CommentForm from 'src/components/forms/CommentForm'
 
-import { useField } from 'hooks'
-import { emptyObj, construcComment, callWithTryCatchAsync } from 'lib'
-import { constructComment } from "lib/index"
+import { useField } from 'src/hooks'
+import { emptyObj, constructComment, callWithTryCatchAsync } from 'src/lib'
 
 const Blog = (props) => {
   const [removed, setRemoved] = useState(false)

@@ -10,10 +10,10 @@ import { Provider } from 'react-redux'
 
 import App from './App'
 
-import { blogs, comments, users, getStore } from 'lib/testHelpers'
+import { blogs, comments, users, getStore } from 'src/lib/testHelpers'
 
-jest.mock('services/blogs')
-jest.mock('services/users.js')
+jest.mock('src/services/blogs')
+jest.mock('src/services/users.js')
 
 describe('<App/>', () => {
 	afterEach(cleanup)

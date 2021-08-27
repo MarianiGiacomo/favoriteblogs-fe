@@ -1,6 +1,6 @@
 import React from 'react'
 
-import bannerImg from 'assets/images/banner.jpg'
+import bannerImg from 'src/assets/images/banner.jpg'
 
 const HomePage = () => (
 		<div>

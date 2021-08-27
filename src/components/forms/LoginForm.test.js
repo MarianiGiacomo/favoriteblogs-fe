@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 import React from 'react'
+import {  BrowserRouter as Router } from "react-router-dom"
 
 import '@testing-library/jest-dom/extend-expect'
 import userEvent from '@testing-library/user-event'
@@ -9,7 +10,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import hooks from 'src/hooks'
 
-import CommentForm from 'src/components/forms/CommentForm'
+import LoginForm from 'src/components/forms/LoginForm'
 
 const setValue = jest.fn( (value) => value)
 
@@ -30,31 +31,35 @@ hooks.useField = jest.fn( (type, name) => {
 	}
 )
 
-describe('<CommentForm/>', () => {
+describe('<LoginForm/>', () => {
 	const useField = hooks.useField
-  const comment = useField('text', 'Comment')
-	const handleSubmit = jest.fn()
+  const username = useField('text', 'username')
+  const password = useField('password', 'password')
+	const handleLogin = jest.fn()
 	let component;
 	beforeEach( () => {
 		component = render(
-			<CommentForm 
-				comment={comment}
-				handleSubmit={handleSubmit}
-			/>
+			<Router>
+				<LoginForm 
+					username={username}
+					password={password}
+					handleLogin={handleLogin}
+				/>
+			</Router>
 		)
 	})
 	afterEach(cleanup)
 
 	test('Receives user input', () => {
-		const commentInput = component.getByText('Leave a comment')
-		const text = 'Comment'
-		userEvent.type(commentInput, text)
+		const usernameInput = component.getByText('Username')
+		const text = 'username'
+		userEvent.type(usernameInput, text)
 		expect(setValue.mock.calls.length).toBe(text.length)
 	})
 
 	test('Submits the data', () => {
 		let submitButton = component.container.querySelector('[type="submit"]')
 		fireEvent.click(submitButton)
-		expect(handleSubmit.mock.calls.length).toBe(1)
+		expect(handleLogin.mock.calls.length).toBe(1)
 	})
 })
