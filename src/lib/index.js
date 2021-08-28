@@ -32,17 +32,17 @@ export const getUserById = (users,id) => users.find(u => u.id === id)
 export const emptyObj = (obj) => Object.keys(obj).length === 0
 
 export async function callWithTryCatchAsync(tryFunc, catchFunc) {
-	try {
-		await tryFunc()
-	} catch (exception) {
-		catchFunc(exception)
-	}
+  try {
+    await tryFunc()
+  } catch (exception) {
+    catchFunc(exception)
+  }
 }
 
 export const constructComment = (comment, blog) => {
-	return {
-		comment: comment.value,
-		timeStamp: new Date().toDateString(),
-		blog: blog.id
-	}
+  return {
+    comment: comment.value,
+    timeStamp: new Date().toDateString(),
+    blog: blog.id
+  }
 }

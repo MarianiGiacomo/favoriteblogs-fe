@@ -1,11 +1,11 @@
-import React from "react"
+import React from 'react'
 
 import { PropTypes } from 'prop-types'
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 
-import { Modal, Button } from 'semantic-ui-react'
+import { Modal, Button } from 'semantic-ui-react'
 
-import { setNotification } from 'src/reducers/notificationReducer'
+import { setNotification } from 'src/reducers/notificationReducer'
 
 const Notification = (props) => {
   const { notification, setNotification } = props

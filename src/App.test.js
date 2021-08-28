@@ -16,14 +16,14 @@ jest.mock('src/services/blogs')
 jest.mock('src/services/users.js')
 
 describe('<App/>', () => {
-	afterEach(cleanup)
+  afterEach(cleanup)
   test('if no user logged in, displays homepage', async () => {
     const component = render(
       <Provider store={getStore(blogs, { token: '' }, comments)}>
         <App />
       </Provider>
     )
-		const title = component.container.querySelector('h1')
+    const title = component.container.querySelector('h1')
     expect(title).toHaveTextContent('Favorite Blogs')
   })
 
@@ -36,7 +36,7 @@ describe('<App/>', () => {
     await waitFor(
       () => component.container.querySelector('.loggedin-content')
     )
-		const LoggedInContent = component.container.querySelector('.loggedin-content')
-		expect(LoggedInContent).toBeTruthy()
+    const LoggedInContent = component.container.querySelector('.loggedin-content')
+    expect(LoggedInContent).toBeTruthy()
   })
 })

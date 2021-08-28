@@ -16,43 +16,43 @@ import blogService from 'src/services/blogs'
 import userService from 'src/services/users'
 
 describe('<LoggedInContent/>', () => {
-	afterEach(cleanup)
+  afterEach(cleanup)
 
-	test('Calls blogs API', () => {
-		blogService.getAll = jest.fn()
-		const component = render(
-			<Provider store={getStore(blogs, users[0], comments)}>
-				<LoggedInContent />
-			</Provider>
-		)
-		expect(blogService.getAll.mock.calls.length).toBe(1)
-	})
+  test('Calls blogs API', () => {
+    blogService.getAll = jest.fn()
+    render(
+      <Provider store={getStore(blogs, users[0], comments)}>
+        <LoggedInContent />
+      </Provider>
+    )
+    expect(blogService.getAll.mock.calls.length).toBe(1)
+  })
 
-	test('Calls users API', async () => {
-		userService.getAll = jest.fn()
-		const component = render(
-			<Provider store={getStore(blogs, users[0], comments)}>
-				<LoggedInContent />
-			</Provider>
-		)
+  test('Calls users API', async () => {
+    userService.getAll = jest.fn()
+    const component = render(
+      <Provider store={getStore(blogs, users[0], comments)}>
+        <LoggedInContent />
+      </Provider>
+    )
     await waitFor(
       () => component.container.querySelector('.loggedin-content')
     )
-		expect(userService.getAll.mock.calls.length).toBe(1)
-	})
+    expect(userService.getAll.mock.calls.length).toBe(1)
+  })
 
-	test('With path "/" returns blogs page', async () => {	
-		const component = render(
-			<Provider store={getStore(blogs, users[0], comments)}>
-				<LoggedInContent />
-			</Provider>
-		)
-		let title;
-		await waitFor(
-			() => { 
-				title = component.container.querySelector('h1') 
-			}
-		)
-		expect(title).toHaveTextContent('Blogs')
-	})
+  test('With path "/" returns blogs page', async () => {
+    const component = render(
+      <Provider store={getStore(blogs, users[0], comments)}>
+        <LoggedInContent />
+      </Provider>
+    )
+    let title
+    await waitFor(
+      () => {
+        title = component.container.querySelector('h1')
+      }
+    )
+    expect(title).toHaveTextContent('Blogs')
+  })
 })

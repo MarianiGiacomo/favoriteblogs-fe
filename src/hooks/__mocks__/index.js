@@ -1,9 +1,9 @@
 const useField = (type, name) => {
-	let value = ''
+  let value = ''
 
-	function setValue(newValue){
-		value = newValue
-	}
+  function setValue(newValue){
+    value = newValue
+  }
 
   const onChange = (event) => {
     setValue(event.target.value)
@@ -19,5 +19,5 @@ const useField = (type, name) => {
 }
 
 export default {
-	useField
+  useField
 }

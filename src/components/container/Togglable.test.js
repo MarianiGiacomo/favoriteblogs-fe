@@ -8,7 +8,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import Togglable from './Togglable'
 
-const buttonLabel = "show"
+const buttonLabel = 'show'
 
 afterEach(cleanup)
 
@@ -41,8 +41,8 @@ describe('<Togglable/>', () => {
   })
 })
 
-function TestDiv(props) {
-	return (
-		<div className='testDiv'></div>
-	)
+function TestDiv() {
+  return (
+    <div className='testDiv'></div>
+  )
 }

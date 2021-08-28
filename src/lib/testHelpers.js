@@ -4,21 +4,21 @@ import thunk from 'redux-thunk'
 export const match = (el) => ({ params: { id: el.id } })
 
 export function getStore(blogs, login, comments, users, notification){
-	const middlewares = [thunk]
-	const mockStore = configureStore(middlewares)
-	const initialState = { blogs, login , comments, users, notification }
-	return mockStore(initialState)
+  const middlewares = [thunk]
+  const mockStore = configureStore(middlewares)
+  const initialState = { blogs, login , comments, users, notification }
+  return mockStore(initialState)
 }
 
 export const loginNavLinks = [
-	[ 'Home', '/' ],
-	[ 'Login', '/login' ],
-	[ 'Signup', '/signup']
+  [ 'Home', '/' ],
+  [ 'Login', '/login' ],
+  [ 'Signup', '/signup']
 ]
 
 export const navLinks = [
-	[ 'Blogs', '/' ],
-	[ 'Users', '/users' ]
+  [ 'Blogs', '/' ],
+  [ 'Users', '/users' ]
 ]
 
 export const blogs = [
@@ -31,8 +31,8 @@ export const blogs = [
       username: 'user1',
       name: 'User Uno'
     },
-		url: 'https://testurl1.com',
-		likes: 1
+    url: 'https://testurl1.com',
+    likes: 1
   },
   {
     id: '5a451e21e0b8b04a45638211',
@@ -43,8 +43,8 @@ export const blogs = [
       username: 'user1',
       name: 'User Uno'
     },
-		url: 'https://testurl2.com',
-		likes: 2
+    url: 'https://testurl2.com',
+    likes: 2
   },
   {
     id: '5a451e30b5ffd44a58fa79ab',
@@ -55,37 +55,37 @@ export const blogs = [
       username: 'user2',
       name: 'User Due'
     },
-		url: 'https://testurl3.com',
-		likes: 3
+    url: 'https://testurl3.com',
+    likes: 3
   },
 ]
 
 export const comments = [
-	{ 
-		comment: 'test comment',
-		timeStamp: new Date().toDateString(),
-		user: {
-			name: 'User Uno',
-			username: 'user1'
-		}	
-	}
+  {
+    comment: 'test comment',
+    timeStamp: new Date().toDateString(),
+    user: {
+      name: 'User Uno',
+      username: 'user1'
+    }
+  }
 ]
 
 export const users = [
-	{
-		id: '5a437a9e514ab7f168ddf138',
-		username: 'user1',
-		name: 'User Uno'
-	},
-	{
-		id: '5a437a9e514ab7f168ddf139',
-		username: 'user2',
-		name: 'User Due'
-	},
-	{
-		id: '5a437a9e514ab7f168ddf140',
-		username: 'user3',
-		name: 'User Tre'
-	}
+  {
+    id: '5a437a9e514ab7f168ddf138',
+    username: 'user1',
+    name: 'User Uno'
+  },
+  {
+    id: '5a437a9e514ab7f168ddf139',
+    username: 'user2',
+    name: 'User Due'
+  },
+  {
+    id: '5a437a9e514ab7f168ddf140',
+    username: 'user3',
+    name: 'User Tre'
+  }
 ]
 

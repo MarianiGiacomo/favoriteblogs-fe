@@ -1,13 +1,12 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from 'react'
 
 import { PropTypes } from 'prop-types'
-import { connect } from "react-redux"
-import {  BrowserRouter as Router, Route } from "react-router-dom"
+import { connect } from 'react-redux'
+import {  BrowserRouter as Router, Route } from 'react-router-dom'
 
-// import { setToken, setUser } from 'src/reducers/loginReducer'
-import { setToken, setUser } from 'src/reducers/loginReducer'
+import { setToken, setUser } from 'src/reducers/loginReducer'
 
-import { Container } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 import LoginNav from 'src/components/presentational/LoginNav'
 import HomePage from 'src/components/pages/HomePage'
 
@@ -47,16 +46,16 @@ const App = (props) => {
             <h1>Favorite Blogs</h1>
           </header>
           <Route exact path='/' render={() =>
-					<>
-            <main>
-							<HomePage />
-						</main>
-						<footer>
-							<a href="https://www.freepik.com/vectors/business" className="credits">
+            <>
+              <main>
+                <HomePage />
+              </main>
+              <footer>
+                <a href="https://www.freepik.com/vectors/business" className="credits">
 								Business vector created by pch.vector - www.freepik.com
-							</a>
-						</footer>
-					</>
+                </a>
+              </footer>
+            </>
           }>
           </Route>
           <Route exact path='/login' render={() =>

@@ -17,5 +17,5 @@ export const useField = (type, name) => {
 }
 
 export default {
-	useField
+  useField
 }

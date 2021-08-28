@@ -1,8 +1,8 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
-import { Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 const LoginNav = () => {
   const [activeItem, setActiveItem] = useState(window.location.pathname.substr(1) || 'home')
