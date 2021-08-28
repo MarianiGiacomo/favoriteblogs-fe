@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 
 const Logout = () => (
-	<Button onClick={handleLogout} >Logout</Button>
+	<Button className="logout" onClick={handleLogout} >Logout</Button>
 )
 
 const handleLogout = () => {

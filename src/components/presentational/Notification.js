@@ -72,7 +72,7 @@ const mapDispatchToProps = {
 }
 
 Notification.propTypes = {
-  setNotification: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired
 }
 
 export default connect(

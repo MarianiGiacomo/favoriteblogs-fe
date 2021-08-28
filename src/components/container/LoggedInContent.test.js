@@ -51,7 +51,6 @@ describe('<LoggedInContent/>', () => {
 		await waitFor(
 			() => { 
 				title = component.container.querySelector('h1') 
-				return title
 			}
 		)
 		expect(title).toHaveTextContent('Blogs')

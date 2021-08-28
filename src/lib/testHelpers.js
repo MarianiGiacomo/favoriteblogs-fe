@@ -3,10 +3,10 @@ import thunk from 'redux-thunk'
 
 export const match = (el) => ({ params: { id: el.id } })
 
-export function getStore(blogs, login, comments, users){
+export function getStore(blogs, login, comments, users, notification){
 	const middlewares = [thunk]
 	const mockStore = configureStore(middlewares)
-	const initialState = { blogs, login , comments, users }
+	const initialState = { blogs, login , comments, users, notification }
 	return mockStore(initialState)
 }
 
