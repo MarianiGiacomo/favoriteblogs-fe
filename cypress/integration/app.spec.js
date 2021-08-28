@@ -10,16 +10,18 @@ describe('Login', function() {
     cy.request('POST', 'http://localhost:3001/api/users/', user)
     cy.visit('http://localhost:3000')
   })
-  it('login page can be opened', function() {
-    cy.contains('Login')
+  it('Homepage can be opened', function() {
+    cy.contains('Favorite Blogs')
   })
 
   it('user can log in', function() {
+    cy.contains('Login')
+      .click()
     cy.get('#username')
       .type(user.username)
     cy.get('#password')
       .type(user.password)
-    cy.contains('Login')
+    cy.get('.login-form button')
       .click()
     cy.contains(`${user.username} logged in`)
   })
