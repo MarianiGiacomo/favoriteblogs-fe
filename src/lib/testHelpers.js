@@ -10,6 +10,17 @@ export function getStore(blogs, login, comments, users){
 	return mockStore(initialState)
 }
 
+export const loginNavLinks = [
+	[ 'Home', '/' ],
+	[ 'Login', '/login' ],
+	[ 'Signup', '/signup']
+]
+
+export const navLinks = [
+	[ 'Blogs', '/' ],
+	[ 'Users', '/users' ]
+]
+
 export const blogs = [
   {
     id: '5d3418e34321a71139456f84',

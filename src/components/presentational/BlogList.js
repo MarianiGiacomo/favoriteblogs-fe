@@ -13,9 +13,10 @@ const BlogList = (props) => {
 
   return (
     <>
-      <h2>Your blogs</h2>
-			<div>
-      { filterBlogs(blogs, login).length
+
+			<section className="user-blogs">
+				<h2>Your blogs</h2>
+				{ filterBlogs(blogs, login).length
         ?
         <Table striped celled >
           <Table.Body>
@@ -31,9 +32,11 @@ const BlogList = (props) => {
         :
         <p>You don&apos;t have any blogs yet</p>
       }
-			</div>
-      <h2>All blogs</h2>
-      { blogs.length
+			</section>
+
+			<section className="all-blogs">
+				<h2>All blogs</h2>
+				{ blogs.length
         ?
         <Table striped celled >
           <Table.Body>
@@ -50,6 +53,8 @@ const BlogList = (props) => {
         :
         <p>There are no blogs yet</p>
       }
+			</section>
+			
     </>
   )
 }

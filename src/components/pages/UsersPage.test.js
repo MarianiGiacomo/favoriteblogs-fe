@@ -14,8 +14,6 @@ import UsersPage from 'src/components/pages/UsersPage'
 import { blogs, comments, users, getStore } from 'src/lib/testHelpers'
 import { populateWithBlogs } from 'src/lib'
 
-jest.mock('src/services/blogs')
-
 describe('<UsersPage/>', () => {
 	let component;
 	beforeEach( () => {
