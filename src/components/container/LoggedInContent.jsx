@@ -34,23 +34,25 @@ const LoggedInContent = (props) => {
   return (
     <div className='loggedin-content'>
       <Router>
-        <Nav username={login.username} />
-        <Notification />
-        { loading
-          ? <>
-            <div className="loader"></div>
-            <p>Fetching data...</p>
-          </>
-          : null
-        }
-					<Route exact path='/' render={() => <BlogsPage /> }/>
-					<Route path='/blogs/:id' render={({ match }) => <Blog match={match} />} />
-					<Route exact path='(/blogs)' render={() => <Redirect to='/'/>} />
-					<Route exact path='(/blogs/)' render={() => <Redirect to='/'/>} />
-					<Route path='/users/:id' render={({ match }) => <User match={match} />} />
-					<Route exact path='/users/)' render={() => <Redirect to='/users'/>} />
-					<Route exact path='/users' render={() => <UsersPage /> } />
-      </Router>
+				<section className="inert-on-modal">
+					<Notification />
+					<Nav username={login.username} />
+					{ loading
+						? <>
+							<div className="loader"></div>
+							<p>Fetching data...</p>
+						</>
+						: null
+					}
+						<Route exact path='/' render={() => <BlogsPage /> }/>
+						<Route path='/blogs/:id' render={({ match }) => <Blog match={match} />} />
+						<Route exact path='(/blogs)' render={() => <Redirect to='/'/>} />
+						<Route exact path='(/blogs/)' render={() => <Redirect to='/'/>} />
+						<Route path='/users/:id' render={({ match }) => <User match={match} />} />
+						<Route exact path='/users/)' render={() => <Redirect to='/users'/>} />
+						<Route exact path='/users' render={() => <UsersPage /> } />
+				</section>
+			</Router>
     </div>
   )
 

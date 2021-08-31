@@ -13,7 +13,7 @@ const SignupForm = (props) => {
 
   return (
     <>
-      <Form onSubmit={handleSignup} className='login-form'>
+      <Form onSubmit={handleSignup} className='signup-form'>
         <Form.Group>
           <Form.Input
             required

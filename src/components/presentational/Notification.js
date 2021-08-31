@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 
 import { Modal, Button } from 'semantic-ui-react'
 
+import "wicg-inert";
+
 import { setNotification } from 'src/reducers/notificationReducer'
 
 const Notification = (props) => {
@@ -13,6 +15,7 @@ const Notification = (props) => {
   const error = notification?.error
 
   const closeModal = () => {
+		document.querySelector('.inert-on-modal').inert = false
     setNotification('')
   }
 
@@ -21,7 +24,9 @@ const Notification = (props) => {
       open={message || error ? true : false}
       onClose={() => closeModal()}
       className={`notification ${message ? 'message' : 'error'}`}
-      role="alert"
+      role="dialog"
+			aria-modal="true"
+			aria-live="assertive"
     >
       <i>
         {setText()}
@@ -36,26 +41,17 @@ const Notification = (props) => {
 
   function setText() {
     if(message || error) {
-      setTimeout(() => setFocus(5), 200)
+      setTimeout(() => setFocus(), 200)
       return message ? message : error
     }
   }
 
-  function setFocus(retry) {
+  function setFocus() {
     const button = document.getElementById('modal-close')
     const modal = document.querySelector('.modal')
     if(button && modal) {
-      // modal.querySelector('i').setAttribute('aria-live', 'assertive')
       button.focus()
-      modal.addEventListener('keydown', (e) => {
-        if(e.key === 'Tab'){
-          e.preventDefault()
-          button.focus()
-        }
-      })
-    }
-    else if(retry > 0) {
-      setFocus(retry --)
+			document.querySelector('.inert-on-modal').inert = true
     }
   }
 

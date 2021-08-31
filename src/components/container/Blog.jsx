@@ -39,16 +39,13 @@ const Blog = (props) => {
     }
   },[blogs])
 
-  const handleSubmit = async (event, newComment, login) => {
-    event.preventDefault()
-		return async (cleanup) => {
-			try {
-				await addComment(login.token, newComment)
-				setNotification({ message: `A new comment "${newComment.comment}" added` })
-				cleanup()
-			} catch (exception) {
-				setNotification({ error: `Could not add the comment: ${exception.message}` })
-			}
+  const handleSubmit = async (newComment, login, cleanup) => {
+		try {
+			await addComment(login.token, newComment)
+			setNotification({ message: `A new comment "${newComment.comment}" added` })
+			cleanup()
+		} catch (exception) {
+			setNotification({ error: `Could not add the comment: ${exception.message}` })
 		}
   }
 
@@ -82,8 +79,8 @@ const Blog = (props) => {
 						comment={comment} 
 						handleSubmit={
 							(event) => { 
-								handleSubmit(event, constructComment(comment, blog), login)
-								(() => comment.setValue('')) 
+								event.preventDefault()
+								handleSubmit(constructComment(comment, blog), login, () => comment.setValue('')) 
 							}
 						}
 					/>

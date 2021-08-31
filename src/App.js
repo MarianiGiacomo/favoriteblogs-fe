@@ -38,38 +38,40 @@ const App = (props) => {
 
   if (login.token === '') {
     return (
-      <Container>
+      <Container aria-haspopup="dialog" >
         <Router>
           <Notification />
-          <LoginNav />
-          <header>
-            <h1>Favorite Blogs</h1>
-          </header>
-          <Route exact path='/' render={() =>
-            <>
-              <main>
-                <HomePage />
-              </main>
-              <footer>
-                <a href="https://www.freepik.com/vectors/business" className="credits">
-								Business vector created by pch.vector - www.freepik.com
-                </a>
-              </footer>
-            </>
-          }>
-          </Route>
-          <Route exact path='/login' render={() =>
-            <main>
-              <LoginPage />
-            </main>
-          }>
-          </Route>
-          <Route path='/signup' render={() =>
-            <main>
-              <SignupPage />
-            </main>
-          }>
-          </Route>
+					<section className="inert-on-modal">
+						<LoginNav />
+						<header>
+							<h1>Favorite Blogs</h1>
+						</header>
+						<Route exact path='/' render={() =>
+							<>
+								<main>
+									<HomePage />
+								</main>
+								<footer>
+									<a href="https://www.freepik.com/vectors/business" className="credits">
+									Business vector created by pch.vector - www.freepik.com
+									</a>
+								</footer>
+							</>
+						}>
+						</Route>
+						<Route exact path='/login' render={() =>
+							<main>
+								<LoginPage />
+							</main>
+						}>
+						</Route>
+						<Route path='/signup' render={() =>
+							<main>
+								<SignupPage />
+							</main>
+						}>
+						</Route>
+					</section>	
         </Router>
       </Container>
     )
