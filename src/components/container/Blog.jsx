@@ -66,8 +66,8 @@ const Blog = (props) => {
         <h1>{blog?.title}</h1>
         <h2>By {blog?.author}</h2>
         <p className="link"><a href={blog?.url} target='_blank' rel='noopener noreferrer' >{blog.url}</a></p>
-        <p className="likes">Likes: {blog?.likes}</p>
-        <Button onClick={() => like(blog)} >Like</Button>
+        <p className="like">Likes: {blog?.likes}</p>
+        <Button className="like" onClick={() => like(blog)} >Like</Button>
         <p>Added by {blog?.user?.name}</p>
         {
           login?.username === blog?.user?.username

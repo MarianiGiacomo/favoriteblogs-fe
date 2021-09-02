@@ -23,3 +23,24 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import { resetAPI, userAPI } from '../fixtures'
+
+Cypress.Commands.add('createUser', (user) => {
+	cy.request('POST', userAPI, user)
+})
+
+Cypress.Commands.add('login', (url, username, password) => {
+	cy.visit(url)
+	cy.get('#username').type(username)
+	cy.get('#password').type(password)
+	cy.get('.login-form button').click()
+})
+
+Cypress.Commands.add('logout', (buttonSelector) => {
+	cy.get(buttonSelector).click()
+})
+
+Cypress.Commands.add('callReset', () => {
+	cy.request('POST', resetAPI)
+})
