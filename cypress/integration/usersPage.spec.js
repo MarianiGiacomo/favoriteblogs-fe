@@ -24,5 +24,10 @@ describe('Users', () => {
 		createUser(newUser)
 		clickNavLink(usersPath)
 		cy.contains('Users')
+		const users = [ user, newUser ]
+		users.forEach( u => {
+			cy.contains(u.name)
+		})
 	})
+
 })
